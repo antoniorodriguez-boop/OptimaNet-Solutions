@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroTech Pro | Montaje e Integración Tecnológica</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           VARIABLES Y CONFIGURACIÓN GLOBAL
+           ========================================= */
+        :root {
+            --bg-dark: #060a13;         /* Negro profundo */
+            --bg-card: rgba(16, 24, 45, 0.7); /* Cristal esmerilado */
+            --accent-neon: #00f2fe;     /* Cyan eléctrico */
+            --accent-purple: #7000ff;   /* Púrpura tecnológico */
+            --text-main: #e2e8f0;       /* Gris claro */
+            --text-muted: #94a3b8;      /* Gris azulado */
+            --white: #ffffff;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --neon-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Estilo de Cristal (Glassmorphism) */
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: var(--glass-border);
+        }
+
+        /* =========================================
+           NAVEGACIÓN
+           ========================================= */
+        header {
+            position: fixed;
+            top: 20px;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 35px;
+            border-radius: 50px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--accent-neon);
+            text-shadow: var(--neon-shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-neon);
+        }
+
+        .btn-cta-nav {
+            background: linear-gradient(90deg, var(--accent-neon), var(--accent-purple));
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: var(--bg-dark) !important;
+            font-weight: 600 !important;
+        }
+
+        /* =========================================
+           HERO SECTION (PORTADA)
+           ========================================= */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 242, 254, 0.05) 0%, transparent 70%),
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 10, 19, 0.85);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(to right, var(--accent-neon), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--accent-neon);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            box-shadow: var(--neon-shadow);
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--accent-neon);
+        }
+
+        /* =========================================
+           SERVICIOS
+           ========================================= */
+        .services {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        .section-header div {
+            width: 50px;
+            height: 4px;
+            background: var(--accent-neon);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            padding: 40px;
+            border-radius: 20px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-neon);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-neon);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* =========================================
+           FORMULARIO DE CONTACTO
+           ========================================= */
+        .contact {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, var(--bg-dark), #0d1425);
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 30px;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-neon);
+            background: rgba(0, 242, 254, 0.05);
+        }
+
+        button {
+            padding: 15px;
+            background: transparent;
+            color: var(--accent-neon);
+            border: 2px solid var(--accent-neon);
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--accent-neon);
+            color: var(--bg-dark);
+            box-shadow: var(--neon-shadow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #444;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .contact-box { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar glass">
+            <div class="logo">ELECTRO<span>PRO</span></div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto" class="btn-cta-nav">Pedir Presupuesto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <p style="color: var(--accent-neon); font-weight: 600; letter-spacing: 3px; margin-bottom: 10px;">INGENIERÍA E INSTALACIÓN</p>
+            <h1>Montamos la <span>Tecnología</span> que impulsa tu Empresa</h1>
+            <p>Especialistas en infraestructura electrónica industrial, centros de datos y automatización avanzada de entornos de trabajo.</p>
+            <a href="#servicios" class="btn-main">Nuestras Soluciones</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <div class="section-header">
+            <h2>Especialidades Técnicas</h2>
+            <div></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card glass">
+                <h3>01. Infraestructura IT</h3>
+                <p>Montaje de racks, cableado estructurado de fibra óptica y certificación de nodos de red para empresas de alta demanda.</p>
+            </div>
+            <div class="service-card glass">
+                <h3>02. Control Industrial</h3>
+                <p>Instalación de cuadros eléctricos de potencia, PLCs y sensórica para líneas de producción automatizadas.</p>
+            </div>
+            <div class="service-card glass">
+                <h3>03. Seguridad IP</h3>
+                <p>Sistemas integrados de vigilancia, control de accesos biométrico y seguridad perimetral electrónica de última generación.</p>
+            </div>
+            <div class="service-card glass">
+                <h3>04. Smart Office</h3>
+                <p>Integración de sistemas audiovisuales para salas de juntas, domótica corporativa y gestión energética inteligente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <div class="contact-box glass">
+            <h2 style="text-align: center; margin-bottom: 10px;">Hablemos de ingeniería</h2>
+            <p style="text-align: center; color: var(--text-muted);">Cuéntanos las necesidades técnicas de tu empresa y nuestros técnicos diseñarán una solución a medida.</p>
+            <form>
+                <input type="text" placeholder="Nombre de la Empresa" required>
+                <input type="email" placeholder="Email Corporativo" required>
+                <textarea placeholder="Detalles del proyecto de montaje (Ej: Instalación de rack, cableado, etc.)" rows="5" required></textarea>
+                <button type="submit">SOLICITAR CONSULTA TÉCNICA</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 ElectroTech Pro. Alta Ingeniería en Montajes Electrónicos. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
