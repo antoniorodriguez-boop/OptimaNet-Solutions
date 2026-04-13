@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plans de Servei | OPTIMANET SOLUTIONS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #060a13;
+            --bg-card: rgba(16, 24, 45, 0.7);
+            --accent-neon: #00f2fe;
+            --accent-purple: #7000ff;
+            --text-main: #e2e8f0;
+            --white: #ffffff;
+            --neon-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Header / Nav */
+        nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--accent-neon); }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .subtitle {
+            color: var(--accent-neon);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+
+        /* Grid de Planes */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .plan-card {
+            padding: 50px 30px;
+            border-radius: 25px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent-neon);
+            box-shadow: var(--neon-shadow);
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--accent-neon);
+            background: rgba(0, 242, 254, 0.03);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-neon);
+            margin-bottom: 25px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 40px;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--accent-neon);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Botones */
+        .btn-plan {
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--accent-neon);
+            color: var(--bg-dark);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent-neon);
+            color: var(--accent-neon);
+        }
+
+        .btn-plan:hover {
+            box-shadow: var(--neon-shadow);
+            opacity: 0.9;
+        }
+
+        /* Tabla comparativa */
+        .comparison-section {
+            margin-top: 100px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+        }
+
+        th, td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        th { color: var(--accent-neon); font-size: 1.1rem; }
+        .row-title { text-align: left; color: #94a3b8; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .plan-card.featured { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">OPTIMANET <span>SOLUTIONS</span></a>
+        <a href="index.html" style="color: white; text-decoration: none; font-size: 0.9rem;">← Tornar a l'inici</a>
+    </nav>
+
+    <div class="container">
+        <p class="subtitle">Escull la teva potència</p>
+        <h1>Plans de Contractació</h1>
+        
+        <div class="plans-grid">
+            
+            <div class="plan-card glass">
+                <div class="plan-name">Bàsic</div>
+                <div class="plan-price">A mida<span> / projecte</span></div>
+                <ul class="features-list">
+                    <li>Instal·lació WiFi individual</li>
+                    <li>Configuració d'equips</li>
+                    <li>Neteja de virus i software</li>
+                    <li>Suport tiquet remot</li>
+                </ul>
+                <a href="mailto:optimaNet-solutions@gmail.com" class="btn-plan btn-outline">Sol·licitar</a>
+            </div>
+
+            <div class="plan-card glass featured">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent-neon); color: black; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-size: 0.7rem;">EL MÉS POPULAR</div>
+                <div class="plan-name">Business</div>
+                <div class="plan-price">Consultar<span> / mes</span></div>
+                <ul class="features-list">
+                    <li>Tot el del pla Bàsic</li>
+                    <li>Manteniment preventiu</li>
+                    <li>Seguretat IP i Càmeres</li>
+                    <li>Prioritat de resposta 24h</li>
+                    <li>Suport presencial inclòs</li>
+                </ul>
+                <a href="mailto:optimaNet-solutions@gmail.com" class="btn-plan btn-primary">Contractar Ara</a>
+            </div>
+
+            <div class="plan-card glass">
+                <div class="plan-name">Premium</div>
+                <div class="plan-price">Integral<span> / total</span></div>
+                <ul class="features-list">
+                    <li>Tot el del pla Business</li>
+                    <li>Infraestructura de servidors</li>
+                    <li>Auditoria de ciberseguretat</li>
+                    <li>Suport 24/7 VIP</li>
+                    <li>Projectes clau en mà</li>
+                </ul>
+                <a href="mailto:optimaNet-solutions@gmail.com" class="btn-plan btn-outline">Contactar</a>
+            </div>
+
+        </div>
+
+        <div class="comparison-section">
+            <h2 style="color: white; margin-bottom: 20px;">Comparativa Detallada</h2>
+            <table class="glass">
+                <thead>
+                    <tr>
+                        <th class="row-title">Servei</th>
+                        <th>Bàsic</th>
+                        <th>Business</th>
+                        <th>Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-title">Instal·lació Hardware</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">Manteniment de Xarxa</td>
+                        <td>❌</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">Còpies de Seguretat</td>
+                        <td>❌</td>
+                        <td>Opcional</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">Temps de resposta</td>
+                        <td>48h</td>
+                        <td>24h</td>
+                        <td>Immediat</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer style="margin-top: 100px; padding: 40px; text-align: center; color: #444; font-size: 0.8rem;">
+        &copy; 2026 OPTIMANET SOLUTIONS | Badalona, Barcelona
+    </footer>
+
+</body>
+</html>
