@@ -34,7 +34,6 @@
             border: var(--glass-border);
         }
 
-        /* --- NAVEGACIÓN --- */
         header {
             position: fixed;
             top: 20px;
@@ -60,7 +59,6 @@
         .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--white); font-size: 0.9rem; transition: 0.3s; }
         
-        /* Botón hamburguesa */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -69,7 +67,6 @@
         }
         .menu-toggle span { width: 25px; height: 3px; background: var(--white); border-radius: 2px; }
 
-        /* --- CONTENEDOR PLANES --- */
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -80,7 +77,6 @@
         h1 { font-size: 3rem; margin-bottom: 10px; color: var(--white); }
         .subtitle { color: var(--accent-neon); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 50px; }
 
-        /* GRID SIMÉTRICO (4 COLUMNAS) */
         .plans-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -122,7 +118,6 @@
         }
         .features-list li::before { content: '✓'; color: var(--accent-neon); margin-right: 10px; font-weight: bold; }
 
-        /* Botones */
         .btn-plan {
             text-decoration: none;
             padding: 12px;
@@ -131,12 +126,12 @@
             transition: 0.3s;
             text-transform: uppercase;
             font-size: 0.8rem;
+            text-align: center;
         }
 
         .btn-primary { background: var(--accent-neon); color: var(--bg-dark); }
         .btn-outline { border: 2px solid var(--accent-neon); color: var(--accent-neon); }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
             .nav-links {
@@ -171,7 +166,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Inici</a></li>
                 <li><a href="index.html#servicios">Més</a></li>
-                <li><a href="mailto:optimaNet-solutions@gmail.com" style="color: var(--accent-neon);">Contacte</a></li>
+                <li><a href="presupost.html" style="color: var(--accent-neon);">Pressupost</a></li>
             </ul>
         </nav>
     </header>
@@ -191,7 +186,7 @@
                     <li>Instal.lació de càmeres seguretat</li>
                     <li>Configuració total de punts wifi</li>
                 </ul>
-                <a href="mailto:optimaNet-solutions@gmail.com" class="btn-plan btn-outline">Fer presupost</a>
+                <a href="presupost.html?plan=complet" class="btn-plan btn-outline">Fer presupost</a>
             </div>
 
             <div class="plan-card glass featured">
@@ -204,11 +199,11 @@
                     <li>Manteniment d'impressores</li>
                     <li>Optimització de senyal</li>
                 </ul>
-                <a href="mailto:optimaNet-solutions@gmail.com" class="btn-plan btn-primary">Fer presupost</a>
+                <a href="presupost.html?plan=wifi" class="btn-plan btn-primary">Fer presupost</a>
             </div>
 
             <div class="plan-card glass">
-                <div class="plan-name">Cablejat</div>
+                <div class="plan-name">Sol Cablejat</div>
                 <div class="plan-price">Cablejat</div>
                 <ul class="features-list">
                     <li>Muntatge de cablejat estructurat</li>
@@ -216,7 +211,7 @@
                     <li>Sanejament de racks i armaris</li>
                     <li>Certificació de punts de xarxa</li>
                 </ul>
-                <a href="mailto:optimaNet-solutions@gmail.com" class="btn-plan btn-outline">Fer presupost</a>
+                <a href="presupost.html?plan=cablejat" class="btn-plan btn-outline">Fer presupost</a>
             </div>
 
             <div class="plan-card glass">
@@ -228,7 +223,7 @@
                     <li>Configuració d'accés remot</li>
                     <li>Protecció 24 hores</li>
                 </ul>
-                <a href="mailto:optimaNet-solutions@gmail.com" class="btn-plan btn-outline">Fer presupost</a>
+                <a href="presupost.html?plan=vigilancia" class="btn-plan btn-outline">Fer presupost</a>
             </div>
 
         </div>
