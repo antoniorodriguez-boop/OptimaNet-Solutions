@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OptimaNet Solutions | Instal·lacions Tecnològiques</title>
+    <title>OptimaNet Solutions | Simetría</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -14,37 +14,29 @@
             --accent-neon: #00f2fe;
             --accent-purple: #7000ff;
             --text-main: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.7);
-            --white: #ffffff;
             --glass-border: 1px solid rgba(255, 255, 255, 0.1);
             --neon-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
-            line-height: 1.6;
             overflow-x: hidden;
         }
 
         .glass {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: var(--glass-border);
         }
 
         /* --- NAVEGACIÓN --- */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 15px 5%;
-            transition: 0.3s;
+            top: 0; width: 100%; z-index: 1000;
+            padding: 10px 5%;
         }
 
         .navbar {
@@ -53,130 +45,80 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 50px;
         }
 
-        .logo { font-size: 1.3rem; font-weight: 700; color: var(--white); text-decoration: none; z-index: 1001; }
-        .logo span { color: var(--accent-neon); text-shadow: var(--neon-shadow); }
+        .logo { font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
+        .logo span { color: var(--accent-neon); }
 
-        /* Menú Desktop */
-        .nav-links { 
-            display: flex; 
-            list-style: none; 
-            gap: 25px; 
-            align-items: center;
-        }
-        
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--white); 
-            font-size: 0.9rem; 
-            transition: 0.3s; 
-            font-weight: 400;
-        }
-        
-        .nav-links a:hover { color: var(--accent-neon); }
-
+        /* Menú Escritorio */
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.9rem; transition: 0.3s; }
         .btn-cta-nav {
             background: linear-gradient(90deg, var(--accent-neon), var(--accent-purple));
-            padding: 8px 22px;
-            border-radius: 20px;
-            color: var(--bg-dark) !important;
-            font-weight: 600 !important;
-            box-shadow: var(--neon-shadow);
+            padding: 7px 15px; border-radius: 20px; color: var(--bg-dark) !important; font-weight: 600;
         }
 
-        /* Botón Hamburguesa (Móvil) */
+        /* BOTÓN TRES BARRITAS */
         .menu-toggle {
             display: none;
             flex-direction: column;
+            gap: 5px;
             cursor: pointer;
-            gap: 6px;
-            z-index: 1001;
+            z-index: 2000;
         }
-
         .menu-toggle span {
-            width: 30px;
-            height: 3px;
-            background: var(--white);
-            border-radius: 2px;
-            transition: 0.3s;
+            width: 25px; height: 3px; background: white; border-radius: 5px; transition: 0.3s;
         }
 
-        /* --- HERO --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(6,10,19,0.8), rgba(6,10,19,0.8)), 
-                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200'); 
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-content { max-width: 900px; padding: 0 25px; }
-        .hero-content h1 { font-size: clamp(2rem, 8vw, 4rem); margin-bottom: 20px; line-height: 1.2; }
-        .hero-content h1 span { color: var(--accent-neon); }
-
-        .btn-main {
-            padding: 15px 35px;
-            background: var(--accent-neon);
-            color: var(--bg-dark);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 8px;
-            box-shadow: var(--neon-shadow);
-            transition: 0.3s;
-        }
-
-        /* --- SERVICIOS --- */
-        .services { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        /* --- SECCIÓN SERVICIOS (SIMÉTRICA) --- */
+        .services { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 50px; }
-        .section-header h2 { font-size: 2.2rem; }
-        .section-header div { width: 60px; height: 4px; background: var(--accent-neon); margin: 15px auto; }
-
+        
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
+            /* Forzamos 2 columnas iguales */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px;
         }
 
-        .service-card { padding: 35px; border-radius: 20px; border: 1px solid transparent; }
-        .service-card:hover { border-color: var(--accent-neon); transform: translateY(-5px); transition: 0.3s; }
-        .service-card h3 { color: var(--accent-neon); margin-bottom: 12px; font-size: 1.2rem; }
+        .service-card { 
+            padding: 40px; 
+            border-radius: 25px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 220px; /* Altura mínima para que sean iguales */
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service-card:hover { transform: scale(1.02); border-color: var(--accent-neon); }
+        .service-card h3 { color: var(--accent-neon); margin-bottom: 15px; font-size: 1.3rem; }
 
-        /* --- RESPONSIVE / MOBILE MENU --- */
+        /* --- MOBILE --- */
         @media (max-width: 768px) {
-            header { top: 0; padding: 10px 0; }
-            .navbar { border-radius: 0; width: 100%; border: none; background: transparent; }
-
             .menu-toggle { display: flex; }
-
+            
             .nav-links {
                 position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 80%;
-                background: var(--bg-dark);
+                top: 0; right: -100%;
+                width: 100%; height: 100vh;
+                background: rgba(6, 10, 19, 0.98);
                 flex-direction: column;
                 justify-content: center;
-                transition: 0.4s ease-in-out;
-                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-                border-left: var(--glass-border);
+                transition: 0.4s;
             }
-
             .nav-links.active { right: 0; }
-            
-            .nav-links a { font-size: 1.2rem; }
-            
-            /* Animación hamburguesa */
-            .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .nav-links a { font-size: 1.5rem; }
+
+            /* Grid a 1 columna en móvil para que no se vea apretado */
+            .services-grid { grid-template-columns: 1fr; }
+
+            /* Animación de las barritas a X */
+            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
-            .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
     </style>
 </head>
@@ -184,50 +126,40 @@
 
     <header>
         <nav class="navbar glass">
-            <a href="index.html" class="logo">OptimaNet<span> Solutions</span></a>
+            <a href="#" class="logo">OptimaNet<span> Solutions</span></a>
             
             <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
 
             <ul class="nav-links">
                 <li><a href="#inicio">Inici</a></li>
-                <li><a href="#servicios">Serveis</a></li>
-                <li><a href="#">Sobre Nosaltres</a></li>
-                <li><a href="#">Projectes</a></li>
-                <li><a href="productes.html" class="btn-cta-nav">Veure Plans</a></li>
+                <li><a href="#servicios">Més</a></li>
+                <li><a href="#" class="btn-cta-nav">Veure Plans</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <p style="color: var(--accent-neon); font-weight: 600; letter-spacing: 3px; margin-bottom: 10px;">INSTAL·LACIÓ TECNOLÒGICA</p>
-            <h1>Muntem la <span>Tecnologia</span> que millora la teva Empresa</h1>
-            <p style="color: #ccc; margin-bottom: 30px;">Especialistes en instal·lació de xarxes, dispositivos i cablejat estructural.</p>
-            <a href="#servicios" class="btn-main">Descobrir més</a>
-        </div>
-    </section>
+    <div style="height: 80px;"></div>
 
     <section id="servicios" class="services">
         <div class="section-header">
             <h2>Més de nosaltres</h2>
-            <div></div>
+            <div style="width: 50px; height: 3px; background: var(--accent-neon); margin: 10px auto;"></div>
         </div>
+
         <div class="services-grid">
             <div class="service-card glass">
                 <h3>01. Que fem?</h3>
-                <p>Ens encarreguem de fer instal·lacions a empreses PIME, garantint seguretat i professionalitat en cada projecte.</p>
+                <p>Instal·lacions tecnològiques per a PIMEs amb seguretat i rigor professional.</p>
             </div>
             <div class="service-card glass">
                 <h3>02. On estem?</h3>
-                <p>Carrer d'Antoni Bori, 08918 Badalona, Barcelona. Vine a visitar-nos!</p>
+                <p>Carrer d'Antoni Bori, 08918 Badalona. Vine a veure les nostres oficines.</p>
             </div>
             <div class="service-card glass">
                 <h3>03. Personalitzat</h3>
-                <p>Fem instal·lacions a mida: des de projectes sencers fins a càmeres IP o xarxes WiFi d'alta velocitat.</p>
+                <p>Projectes a mida: des de càmeres IP fins a infraestructures de xarxa WiFi.</p>
             </div>
             <div class="service-card glass">
                 <h3>04. Contacte</h3>
@@ -244,15 +176,6 @@
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
-
-        // Cerrar menú al hacer clic en un enlace (para móvil)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
     </script>
-
 </body>
 </html>
