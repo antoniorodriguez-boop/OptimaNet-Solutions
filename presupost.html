@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demana Pressupost | OPTIMANET SOLUTIONS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #060a13;
+            --bg-card: rgba(16, 24, 45, 0.8);
+            --accent-neon: #00f2fe;
+            --text-main: #e2e8f0;
+            --white: #ffffff;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --neon-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            background: radial-gradient(circle at top right, rgba(0, 242, 254, 0.05), transparent), var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: var(--glass-border);
+        }
+
+        nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
+        .logo span { color: var(--accent-neon); }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .form-header { text-align: center; margin-bottom: 40px; }
+        .form-header h1 { font-size: 2.5rem; color: white; margin-bottom: 10px; }
+        .form-header p { color: var(--accent-neon); font-weight: 300; }
+
+        form {
+            padding: 40px;
+            border-radius: 30px;
+            display: grid;
+            gap: 25px;
+        }
+
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        label { font-size: 0.9rem; font-weight: 600; color: var(--accent-neon); }
+
+        input, select, textarea {
+            padding: 12px 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-neon);
+            box-shadow: var(--neon-shadow);
+        }
+
+        .btn-send {
+            background: var(--accent-neon);
+            color: var(--bg-dark);
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-send:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            form { padding: 25px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">OPTIMANET <span>SOLUTIONS</span></a>
+    </nav>
+
+    <div class="container">
+        <div class="form-header">
+            <h1>Sol·licitud de Pressupost</h1>
+            <p>Explica'ns el teu projecte i et respondrem en menys de 24h</p>
+        </div>
+
+        <form action="https://formsubmit.co/optimaNet-solutions@gmail.com" method="POST" class="glass">
+            <input type="hidden" name="_next" value="https://tu-web.vercel.app/gracias.html">
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="input-group">
+                <label>Nom complet / Empresa</label>
+                <input type="text" name="name" placeholder="Ex: Joan Garcia / PIME Badalona" required>
+            </div>
+
+            <div class="input-group">
+                <label>Correu Electrònic</label>
+                <input type="email" name="email" placeholder="correu@empresa.com" required>
+            </div>
+
+            <div class="input-group">
+                <label>Pla d'interès</label>
+                <select name="plan" id="plan-selector">
+                    <option value="cap">Selecciona un pla...</option>
+                    <option value="complet">Pla Complet</option>
+                    <option value="wifi">Pla Wifi</option>
+                    <option value="cablejat">Pla Cablejat</option>
+                    <option value="vigilancia">Pla Vigilància</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Detalls del projecte</label>
+                <textarea name="message" rows="5" placeholder="Explica'ns breument què necessites (m2, número de càmeres, punts de xarxa...)" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-send">Enviar Sol·licitud</button>
+            
+            <a href="productes.html" class="back-link">← Tornar als plans</a>
+        </form>
+    </div>
+
+    <script>
+        // Lógica para detectar qué plan eligió el usuario en la página anterior
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedPlan = urlParams.get('plan');
+        if (selectedPlan) {
+            document.getElementById('plan-selector').value = selectedPlan;
+        }
+    </script>
+
+</body>
+</html>
