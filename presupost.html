@@ -107,6 +107,22 @@
             form { padding: 25px; }
             h1 { font-size: 1.8rem; }
         }
+
+        
+select option {
+    background-color: white; 
+    color: #060a13;          
+    font-family: 'Poppins', sans-serif;
+}
+
+select {
+    cursor: pointer;
+    appearance: none; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) center;
+    padding-right: 40px !important;
+}
     </style>
 </head>
 <body>
@@ -158,7 +174,7 @@
     </div>
 
     <script>
-        // Lógica para detectar qué plan eligió el usuario en la página anterior
+        
         const urlParams = new URLSearchParams(window.location.search);
         const selectedPlan = urlParams.get('plan');
         if (selectedPlan) {
