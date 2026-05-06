@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptimaNet Solutions | Instal·lacions Tecnològiques</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #060a13;
+            --bg-card: rgba(16, 24, 45, 0.7);
+            --accent-neon: #00f2fe;
+            --accent-purple: #7000ff;
+            --text-main: #ffffff; 
+            --text-muted: rgba(255, 255, 255, 0.7); 
+            --white: #ffffff;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --neon-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: var(--glass-border);
+        }
+
+        header {
+            position: fixed;
+            top: 20px;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 35px;
+            border-radius: 50px;
+            position: relative;
+        }
+
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--accent-neon); text-shadow: var(--neon-shadow); }
+
+        /* --- MENÚ NAVEGACIÓN --- */
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--white); font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-neon); }
+
+        .btn-cta-nav {
+            background: linear-gradient(90deg, var(--accent-neon), var(--accent-purple));
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: var(--bg-dark) !important;
+            font-weight: 600 !important;
+        }
+
+        /* Botón hamburguesa invisible por defecto */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 242, 254, 0.05) 0%, transparent 70%),
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 10, 19, 0.85);
+        }
+
+        .hero-content { position: relative; z-index: 10; max-width: 900px; padding: 0 20px; }
+        .hero-content h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); margin-bottom: 20px; }
+        .hero-content h1 span { color: var(--accent-neon); }
+
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--accent-neon);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            box-shadow: var(--neon-shadow);
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        /* --- SECCIÓN SERVICIOS (SIMÉTRICA) --- */
+        .services { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--white); }
+        .section-header div { width: 50px; height: 4px; background: var(--accent-neon); margin: 15px auto; }
+
+        .services-grid {
+            display: grid;
+            /* AQUÍ ESTÁ LA SIMETRÍA: 2 columnas fijas en escritorio */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .service-card { padding: 40px; border-radius: 20px; transition: 0.4s; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--accent-neon); }
+        .service-card h3 { color: var(--accent-neon); margin-bottom: 15px; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; } /* Aparecen las barras */
+
+            .nav-links {
+                display: none; /* Se oculta el menú normal */
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 200px;
+                padding: 20px;
+                border-radius: 20px;
+                background: var(--bg-card);
+                backdrop-filter: blur(20px);
+                border: var(--glass-border);
+                gap: 20px;
+            }
+
+            .nav-links.active { display: flex; } /* Se muestra al hacer click */
+
+            .services-grid {
+                grid-template-columns: 1fr; /* En móvil, 1 columna para que se lea bien */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar glass">
+            <a href="index.html" class="logo">OptimaNet<span> Solutions</span></a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#inicio">Inici</a></li>
+                <li><a href="#servicios">Més</a></li>
+                <li><a href="productes.html" class="btn-cta-nav">Veure Plans</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <p style="color: var(--accent-neon); font-weight: 600; letter-spacing: 3px; margin-bottom: 10px;">INSTAL·LACIÓ TECNOLÒGICA</p>
+            <h1>Muntem la <span>Tecnologia</span> que millora la teva Empresa</h1>
+            <p style="color: #ccc; margin-bottom: 30px;">Especialistes en instal·lació de xarxes, dispositius i cablejat estructural.</p>
+            <a href="#servicios" class="btn-main">Més de nosaltres</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <div class="section-header">
+            <h2>Més de nosaltres</h2>
+            <div></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card glass">
+                <h3>01. Que fem?</h3>
+                <p>Ens encarreguem de fer instal·lacions a empreses PIME, garantint seguretat i professionalitat en cada projecte.</p>
+            </div>
+            <div class="service-card glass">
+                <h3>02. On estem?</h3>
+                <p>Ens trobem al Carrer d'Antoni Bori, 08918 Badalona, Barcelona. Vine a visitar-nos!</p>
+            </div>
+            <div class="service-card glass">
+                <h3>03. Com treballem?</h3>
+                <p>Fem instal·lacions a mida: des de projectes sencers fins a apartats concrets com càmeres IP, xarxes WiFi o ordenadors.</p>
+            </div>
+            <div class="service-card glass">
+                <h3>04. Contacte</h3>
+                <p>📞 Telèfon: +34 667 33 33 33<br>📧 Correu: optimanet-solutions@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
