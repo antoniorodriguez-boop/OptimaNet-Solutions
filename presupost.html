@@ -108,7 +108,7 @@
             <div class="total-box">
                 <span data-key="total_label" style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Estimació Aproximada</span>
                 <div id="total-display">0€</div>
-                <p style="font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 5px;">*Preu final subjecte a revisió tècnica.</p>
+                <p id="price-disclaimer" style="font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 5px;" data-key="price_note">*Preu final subjecte a revisió tècnica.</p>
             </div>
         </div>
 
@@ -127,7 +127,7 @@
             </div>
             <div class="input-field">
                 <label data-key="label_desc">Explica'ns què necessites</label>
-                <textarea name="description" rows="4" placeholder="Explica breument el teu projecte o necessitats específiques..." required></textarea>
+                <textarea id="text-desc" name="description" rows="4" data-key="desc_placeholder" placeholder="Explica breument el teu projecte o necessitats específiques..." required></textarea>
             </div>
             
             <button type="submit" class="btn-send" data-key="btn_send">Enviar Sol·licitud</button>
@@ -150,9 +150,11 @@
                 'diff_easy': 'Oficina / Local',
                 'diff_hard': 'Nau Industrial / Nau',
                 'total_label': 'Estimació Aproximada',
+                'price_note': '*Preu final subjecte a revisió tècnica.', // TRADUCCIÓN AÑADIDA
                 'label_name': 'Nom o Empresa',
                 'label_email': 'Correu de contacte',
                 'label_desc': "Explica'ns què necessites",
+                'desc_placeholder': "Explica breument el teu projecte o necessitats específiques...", // TRADUCCIÓN AÑADIDA
                 'btn_send': 'Enviar Sol·licitud'
             },
             'en': {
@@ -169,9 +171,11 @@
                 'diff_easy': 'Office / Space',
                 'diff_hard': 'Industrial / Complex Installation',
                 'total_label': 'Approximate Estimate',
+                'price_note': '*Final price subject to technical review.', // TRADUCCIÓN AÑADIDA
                 'label_name': 'Name or Company',
                 'label_email': 'Contact Email',
                 'label_desc': 'Tell us what you need',
+                'desc_placeholder': "Briefly explain your project or specific needs...", // TRADUCCIÓN AÑADIDA
                 'btn_send': 'Send Request'
             }
         };
@@ -200,7 +204,14 @@
         function updateLanguage() {
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
+                if (translations[currentLang][key]) {
+                    // Si es el textarea, cambiamos el placeholder
+                    if (el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[currentLang][key];
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
             });
             langBtn.textContent = currentLang === 'ca' ? 'CA / EN' : 'EN / CA';
         }
