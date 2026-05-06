@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +40,18 @@
 
         .logo { font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
         .logo span { color: var(--accent-neon); }
+
+        #lang-btn {
+            background: none;
+            border: 1px solid var(--accent-neon);
+            color: var(--accent-neon);
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
 
         .container {
             max-width: 800px;
@@ -103,38 +115,37 @@
             font-size: 0.8rem;
         }
 
+        select option {
+            background-color: white; 
+            color: #060a13;          
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none; 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 15px) center;
+            padding-right: 40px !important;
+        }
+
         @media (max-width: 600px) {
             form { padding: 25px; }
             h1 { font-size: 1.8rem; }
         }
-
-        
-select option {
-    background-color: white; 
-    color: #060a13;          
-    font-family: 'Poppins', sans-serif;
-}
-
-select {
-    cursor: pointer;
-    appearance: none; 
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: calc(100% - 15px) center;
-    padding-right: 40px !important;
-}
     </style>
 </head>
 <body>
 
     <nav>
         <a href="index.html" class="logo">OPTIMANET <span>SOLUTIONS</span></a>
+        <button id="lang-btn">CA / EN</button>
     </nav>
 
     <div class="container">
         <div class="form-header">
-            <h1>Sol·licitud de Pressupost</h1>
-            <p>Explica'ns el teu projecte i et respondrem en menys de 24h</p>
+            <h1 data-key="form_title">Sol·licitud de Pressupost</h1>
+            <p data-key="form_subtitle">Explica'ns el teu projecte i et respondrem en menys de 24h</p>
         </div>
 
         <form action="https://formsubmit.co/optimaNet-solutions@gmail.com" method="POST" class="glass">
@@ -142,44 +153,112 @@ select {
             <input type="hidden" name="_captcha" value="false">
 
             <div class="input-group">
-                <label>Nom complet / Empresa</label>
-                <input type="text" name="name" placeholder="Ex: Joan Garcia / PIME Badalona" required>
+                <label data-key="label_name">Nom complet / Empresa</label>
+                <input type="text" name="name" id="input-name" placeholder="Ex: Joan Garcia / PIME Badalona" data-key="ph_name" required>
             </div>
 
             <div class="input-group">
-                <label>Correu Electrònic</label>
-                <input type="email" name="email" placeholder="correu@empresa.com" required>
+                <label data-key="label_email">Correu Electrònic</label>
+                <input type="email" name="email" id="input-email" placeholder="correu@empresa.com" data-key="ph_email" required>
             </div>
 
             <div class="input-group">
-                <label>Pla d'interès</label>
+                <label data-key="label_plan">Pla d'interès</label>
                 <select name="plan" id="plan-selector">
-                    <option value="cap">Selecciona un pla...</option>
-                    <option value="complet">Pla Complet</option>
-                    <option value="wifi">Pla Wifi</option>
-                    <option value="cablejat">Pla Cablejat</option>
-                    <option value="vigilancia">Pla Vigilància</option>
+                    <option value="cap" data-key="opt_none">Selecciona un pla...</option>
+                    <option value="complet" data-key="opt_complet">Pla Complet</option>
+                    <option value="wifi" data-key="opt_wifi">Pla Wifi</option>
+                    <option value="cablejat" data-key="opt_cable">Pla Cablejat</option>
+                    <option value="vigilancia" data-key="opt_vigilancia">Pla Vigilància</option>
                 </select>
             </div>
 
             <div class="input-group">
-                <label>Detalls del projecte</label>
-                <textarea name="message" rows="5" placeholder="Explica'ns breument què necessites (m2, número de càmeres, punts de xarxa...)" required></textarea>
+                <label data-key="label_msg">Detalls del projecte</label>
+                <textarea name="message" id="input-msg" rows="5" placeholder="Explica'ns breument què necessites (m2, número de càmeres, punts de xarxa...)" data-key="ph_msg" required></textarea>
             </div>
 
-            <button type="submit" class="btn-send">Enviar Sol·licitud</button>
+            <button type="submit" class="btn-send" data-key="btn_send">Enviar Sol·licitud</button>
             
-            <a href="productes.html" class="back-link">← Tornar als plans</a>
+            <a href="productes.html" class="back-link" data-key="back_link">← Tornar als plans</a>
         </form>
     </div>
 
     <script>
-        
+        const translations = {
+            'ca': {
+                'form_title': 'Sol·licitud de Pressupost',
+                'form_subtitle': "Explica'ns el teu projecte i et respondrem en menys de 24h",
+                'label_name': 'Nom complet / Empresa',
+                'ph_name': 'Ex: Joan Garcia / PIME Badalona',
+                'label_email': 'Correu Electrònic',
+                'ph_email': 'correu@empresa.com',
+                'label_plan': "Pla d'interès",
+                'opt_none': 'Selecciona un pla...',
+                'opt_complet': 'Pla Complet',
+                'opt_wifi': 'Pla Wifi',
+                'opt_cable': 'Pla Cablejat',
+                'opt_vigilancia': 'Pla Vigilància',
+                'label_msg': 'Detalls del projecte',
+                'ph_msg': "Explica'ns breument què necessites (m2, número de càmeres, punts de xarxa...)",
+                'btn_send': 'Enviar Sol·licitud',
+                'back_link': '← Tornar als plans'
+            },
+            'en': {
+                'form_title': 'Request a Quote',
+                'form_subtitle': 'Tell us about your project and we will reply within 24h',
+                'label_name': 'Full Name / Company',
+                'ph_name': 'Ex: John Doe / SMB London',
+                'label_email': 'Email Address',
+                'ph_email': 'email@company.com',
+                'label_plan': 'Plan of Interest',
+                'opt_none': 'Select a plan...',
+                'opt_complet': 'Complete Plan',
+                'opt_wifi': 'Wifi Plan',
+                'opt_cable': 'Cabling Plan',
+                'opt_vigilancia': 'Surveillance Plan',
+                'label_msg': 'Project Details',
+                'ph_msg': 'Briefly explain what you need (m2, number of cameras, network points...)',
+                'btn_send': 'Send Request',
+                'back_link': '← Back to plans'
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'ca';
+        const langBtn = document.getElementById('lang-btn');
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                const translation = translations[currentLang][key];
+                
+                if (translation) {
+                    // Si es un input o textarea, traducimos el placeholder
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translation;
+                    } else {
+                        el.textContent = translation;
+                    }
+                }
+            });
+            langBtn.textContent = currentLang === 'ca' ? 'CA / EN' : 'EN / CA';
+        }
+
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'ca' ? 'en' : 'ca';
+            localStorage.setItem('lang', currentLang);
+            updateLanguage();
+        });
+
+        // Lógica original para capturar el plan de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const selectedPlan = urlParams.get('plan');
         if (selectedPlan) {
             document.getElementById('plan-selector').value = selectedPlan;
         }
+
+        // Inicializar idioma
+        updateLanguage();
     </script>
 
 </body>
