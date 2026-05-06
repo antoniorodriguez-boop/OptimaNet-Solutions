@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntes Freqüents | OPTIMANET SOLUTIONS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #060a13;
+            --bg-card: rgba(16, 24, 45, 0.7);
+            --accent-neon: #00f2fe;
+            --text-main: #e2e8f0;
+            --white: #ffffff;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --neon-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: var(--glass-border);
+        }
+
+        /* --- NAVBAR (Copiada para consistencia) --- */
+        header { position: fixed; top: 20px; width: 100%; z-index: 1000; padding: 0 5%; }
+        .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 35px; border-radius: 50px; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--accent-neon); }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--white); font-size: 0.9rem; }
+
+        /* --- FAQ SECTION --- */
+        .container { max-width: 900px; margin: 0 auto; padding: 140px 20px 60px; }
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 10px; }
+        .subtitle { color: var(--accent-neon); text-align: center; text-transform: uppercase; font-weight: 600; margin-bottom: 50px; display: block; }
+
+        .faq-item { margin-bottom: 15px; border-radius: 15px; overflow: hidden; transition: 0.3s; }
+        
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-question:hover { background: rgba(0, 242, 254, 0.05); }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-out;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Clase para abrir la respuesta mediante JS */
+        .faq-item.active .faq-answer {
+            padding: 10px 25px 25px;
+            max-height: 200px;
+        }
+
+        .faq-item.active { border-color: var(--accent-neon); box-shadow: var(--neon-shadow); }
+
+        .icon {
+            width: 20px; height: 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+        .icon::before, .icon::after {
+            content: ''; position: absolute; background: var(--accent-neon);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+        .icon::before { width: 15px; height: 2px; } /* Horizontal */
+        .icon::after { width: 2px; height: 15px; } /* Vertical */
+
+        .faq-item.active .icon { transform: rotate(45deg); } /* Gira para hacer una X */
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* Simplificado para el ejemplo */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar glass">
+            <a href="index.html" class="logo">OPTIMANET <span>SOLUTIONS</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inici</a></li>
+                <li><a href="productes.html">Plans</a></li>
+                <li><a href="faq.html" style="color: var(--accent-neon);">FAQ</a></li>
+                <li><a href="presupost.html" style="border: 1px solid var(--accent-neon); padding: 5px 15px; border-radius: 15px;">Pressupost</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <span class="subtitle">Resolem els teus dubtes</span>
+        <h1>Preguntes Freqüents</h1>
+
+        <div class="faq-grid">
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    Quant triga una instal·lació estàndard?
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Depèn de la mida de l'empresa, però una instal·lació mitjana de xarxa i punts WiFi se sol completar en 24-48 hores per no interrompre la vostra activitat laboral.</p>
+                </div>
+            </div>
+
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    Oferiu garantia en els vostres serveis?
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, totes les nostres instal·lacions tenen una garantia de 2 anys en materials i 6 mesos de suport tècnic post-instal·lació gratuït.</p>
+                </div>
+            </div>
+
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    Doneu servei fora de Badalona?
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Treballem principalment a Badalona i tota l'àrea metropolitana de Barcelona (Hospitalet, Sabadell, Terrassa, etc.). Per a altres ubicacions, consulteu-nos!</p>
+                </div>
+            </div>
+
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    Puc demanar un pressupost personalitzat?
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>I tant! Si cap dels nostres plans s'ajusta a les teves necessitats, contacta amb nosaltres i et farem una auditoria a mida.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lógica para abrir/cerrar el acordeón
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
