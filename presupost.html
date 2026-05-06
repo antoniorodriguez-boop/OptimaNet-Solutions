@@ -63,6 +63,37 @@
         .form-header h1 { font-size: 2.5rem; color: white; margin-bottom: 10px; }
         .form-header p { color: var(--accent-neon); font-weight: 300; }
 
+        /* Estilos Calculadora */
+        .calculator-box {
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .calc-grid { display: grid; gap: 15px; margin-top: 20px; }
+        .calc-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .calc-item:hover { border-color: var(--accent-neon); background: rgba(0, 242, 254, 0.05); }
+        .calc-item input[type="checkbox"] { width: 18px; height: 18px; margin-right: 15px; cursor: pointer; }
+        .calc-price { margin-left: auto; font-weight: 700; color: var(--accent-neon); }
+
+        .total-container {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        #total-display { font-size: 3rem; font-weight: 800; color: var(--accent-neon); text-shadow: var(--neon-shadow); }
+
+        /* Estilos Formulario */
         form {
             padding: 40px;
             border-radius: 30px;
@@ -102,36 +133,14 @@
             transition: 0.3s;
         }
 
-        .btn-send:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
-        }
+        .btn-send:hover { transform: scale(1.02); box-shadow: 0 0 25px rgba(0, 242, 254, 0.5); }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            font-size: 0.8rem;
-        }
-
-        select option {
-            background-color: white; 
-            color: #060a13;          
-        }
-
-        select {
-            cursor: pointer;
-            appearance: none; 
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: calc(100% - 15px) center;
-            padding-right: 40px !important;
-        }
+        .back-link { display: inline-block; margin-top: 20px; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.8rem; }
 
         @media (max-width: 600px) {
             form { padding: 25px; }
             h1 { font-size: 1.8rem; }
+            #total-display { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -144,42 +153,62 @@
 
     <div class="container">
         <div class="form-header">
-            <h1 data-key="form_title">Sol·licitud de Pressupost</h1>
-            <p data-key="form_subtitle">Explica'ns el teu projecte i et respondrem en menys de 24h</p>
+            <h1 data-key="form_title">Calcula el teu Pressupost</h1>
+            <p data-key="form_subtitle">Selecciona els serveis i demana una confirmació oficial</p>
+        </div>
+
+        <div class="calculator-box glass">
+            <div class="calc-grid">
+                <label class="calc-item">
+                    <input type="checkbox" class="calc-check" data-price="150" data-name="Punt WiFi">
+                    <span>Punt d'Accés WiFi (AP)</span>
+                    <span class="calc-price">+150€</span>
+                </label>
+                <label class="calc-item">
+                    <input type="checkbox" class="calc-check" data-price="250" data-name="Càmera IP">
+                    <span>Càmera de Seguretat IP 4K</span>
+                    <span class="calc-price">+250€</span>
+                </label>
+                <label class="calc-item">
+                    <input type="checkbox" class="calc-check" data-price="400" data-name="Rack Central">
+                    <span>Armari Rack + Switch 24p</span>
+                    <span class="calc-price">+400€</span>
+                </label>
+                <div class="calc-item" style="cursor: default;">
+                    <span>Punts de Red (Cablejat)</span>
+                    <div style="margin-left: auto; display: flex; align-items: center; gap: 10px;">
+                        <input type="number" id="input-puntos" value="0" min="0" style="width: 60px; padding: 5px;">
+                        <span style="font-size: 0.8rem; color: var(--accent-neon);">x 70€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="total-container">
+                <span style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Estimació Total</span>
+                <div id="total-display">0€</div>
+            </div>
         </div>
 
         <form action="https://formsubmit.co/optimaNet-solutions@gmail.com" method="POST" class="glass">
-            <input type="hidden" name="_next" value="https://tu-web.vercel.app/gracias.html">
             <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="Total_Estimat" id="hidden-total" value="0€">
 
             <div class="input-group">
                 <label data-key="label_name">Nom complet / Empresa</label>
-                <input type="text" name="name" id="input-name" placeholder="Ex: Joan Garcia / PIME Badalona" data-key="ph_name" required>
+                <input type="text" name="name" placeholder="Ex: Joan Garcia" data-key="ph_name" required>
             </div>
 
             <div class="input-group">
                 <label data-key="label_email">Correu Electrònic</label>
-                <input type="email" name="email" id="input-email" placeholder="correu@empresa.com" data-key="ph_email" required>
+                <input type="email" name="email" placeholder="correu@empresa.com" data-key="ph_email" required>
             </div>
 
             <div class="input-group">
-                <label data-key="label_plan">Pla d'interès</label>
-                <select name="plan" id="plan-selector">
-                    <option value="cap" data-key="opt_none">Selecciona un pla...</option>
-                    <option value="complet" data-key="opt_complet">Pla Complet</option>
-                    <option value="wifi" data-key="opt_wifi">Pla Wifi</option>
-                    <option value="cablejat" data-key="opt_cable">Pla Cablejat</option>
-                    <option value="vigilancia" data-key="opt_vigilancia">Pla Vigilància</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label data-key="label_msg">Detalls del projecte</label>
-                <textarea name="message" id="input-msg" rows="5" placeholder="Explica'ns breument què necessites (m2, número de càmeres, punts de xarxa...)" data-key="ph_msg" required></textarea>
+                <label data-key="label_msg">Detalls o comentaris</label>
+                <textarea name="message" id="input-msg" rows="4" placeholder="Alguna cosa més que haguem de saber?" data-key="ph_msg"></textarea>
             </div>
 
             <button type="submit" class="btn-send" data-key="btn_send">Enviar Sol·licitud</button>
-            
             <a href="productes.html" class="back-link" data-key="back_link">← Tornar als plans</a>
         </form>
     </div>
@@ -187,43 +216,64 @@
     <script>
         const translations = {
             'ca': {
-                'form_title': 'Sol·licitud de Pressupost',
-                'form_subtitle': "Explica'ns el teu projecte i et respondrem en menys de 24h",
+                'form_title': 'Calcula el teu Pressupost',
+                'form_subtitle': 'Selecciona els serveis i demana una confirmació oficial',
                 'label_name': 'Nom complet / Empresa',
                 'ph_name': 'Ex: Joan Garcia / PIME Badalona',
                 'label_email': 'Correu Electrònic',
                 'ph_email': 'correu@empresa.com',
-                'label_plan': "Pla d'interès",
-                'opt_none': 'Selecciona un pla...',
-                'opt_complet': 'Pla Complet',
-                'opt_wifi': 'Pla Wifi',
-                'opt_cable': 'Pla Cablejat',
-                'opt_vigilancia': 'Pla Vigilància',
-                'label_msg': 'Detalls del projecte',
-                'ph_msg': "Explica'ns breument què necessites (m2, número de càmeres, punts de xarxa...)",
+                'label_msg': 'Detalls o comentaris',
+                'ph_msg': 'Alguna cosa més que haguem de saber?',
                 'btn_send': 'Enviar Sol·licitud',
                 'back_link': '← Tornar als plans'
             },
             'en': {
-                'form_title': 'Request a Quote',
-                'form_subtitle': 'Tell us about your project and we will reply within 24h',
+                'form_title': 'Calculate your Budget',
+                'form_subtitle': 'Select services and request an official confirmation',
                 'label_name': 'Full Name / Company',
                 'ph_name': 'Ex: John Doe / SMB London',
                 'label_email': 'Email Address',
                 'ph_email': 'email@company.com',
-                'label_plan': 'Plan of Interest',
-                'opt_none': 'Select a plan...',
-                'opt_complet': 'Complete Plan',
-                'opt_wifi': 'Wifi Plan',
-                'opt_cable': 'Cabling Plan',
-                'opt_vigilancia': 'Surveillance Plan',
-                'label_msg': 'Project Details',
-                'ph_msg': 'Briefly explain what you need (m2, number of cameras, network points...)',
+                'label_msg': 'Details or comments',
+                'ph_msg': 'Anything else we should know?',
                 'btn_send': 'Send Request',
                 'back_link': '← Back to plans'
             }
         };
 
+        // LÓGICA CALCULADORA
+        const checks = document.querySelectorAll('.calc-check');
+        const inputPuntos = document.getElementById('input-puntos');
+        const displayTotal = document.getElementById('total-display');
+        const hiddenTotal = document.getElementById('hidden-total');
+        let totalActual = 0;
+
+        function calcular() {
+            let nuevoTotal = 0;
+            checks.forEach(c => { if(c.checked) nuevoTotal += parseInt(c.dataset.price); });
+            nuevoTotal += (parseInt(inputPuntos.value) || 0) * 70;
+            
+            animarNumero(totalActual, nuevoTotal);
+            totalActual = nuevoTotal;
+            hiddenTotal.value = nuevoTotal + "€";
+        }
+
+        function animarNumero(inicio, fin) {
+            let comienzo = null;
+            const duracion = 400;
+            function paso(timestamp) {
+                if (!comienzo) comienzo = timestamp;
+                let progreso = Math.min((timestamp - comienzo) / duracion, 1);
+                displayTotal.textContent = Math.floor(progreso * (fin - inicio) + inicio) + "€";
+                if (progreso < 1) window.requestAnimationFrame(paso);
+            }
+            window.requestAnimationFrame(paso);
+        }
+
+        checks.forEach(c => c.addEventListener('change', calcular));
+        inputPuntos.addEventListener('input', calcular);
+
+        // LÓGICA IDIOMA
         let currentLang = localStorage.getItem('lang') || 'ca';
         const langBtn = document.getElementById('lang-btn');
 
@@ -231,14 +281,9 @@
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 const translation = translations[currentLang][key];
-                
                 if (translation) {
-                    // Si es un input o textarea, traducimos el placeholder
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translation;
-                    } else {
-                        el.textContent = translation;
-                    }
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = translation;
+                    else el.textContent = translation;
                 }
             });
             langBtn.textContent = currentLang === 'ca' ? 'CA / EN' : 'EN / CA';
@@ -250,16 +295,7 @@
             updateLanguage();
         });
 
-        // Lógica original para capturar el plan de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectedPlan = urlParams.get('plan');
-        if (selectedPlan) {
-            document.getElementById('plan-selector').value = selectedPlan;
-        }
-
-        // Inicializar idioma
         updateLanguage();
     </script>
-
 </body>
 </html>
