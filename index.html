@@ -204,6 +204,9 @@
                 's2_h': '02. On estem?', 's2_p': 'Ens trobem al Carrer d\'Antoni Bori, 08918 Badalona, Barcelona. Vine a visitar-nos!',
                 's3_h': '03. Com treballem?', 's3_p': 'Fem instal·lacions a mida: des de projectes sencers fins a apartats concrets com càmeres IP, xarxes WiFi o ordenadors.',
                 's4_h': '04. Contacte', 's4_p': '📞 Telèfon: +34 667 33 33 33\n📧 Correu: optimanet-solutions@gmail.com'
+                'cookie_text': 'Utilitzem cookies pròpies per millorar la teva experiència. Al continuar navegant, acceptes la nostra política de privacitat.',
+                'cookie_accept': 'Acceptar',
+                'cookie_deny': 'Rebutjar',
             },
             'en': {
                 'nav_inicio': 'Home', 'nav_mes': 'More', 'nav_plans': 'View Plans',
@@ -216,6 +219,9 @@
                 's2_h': '02. Where are we?', 's2_p': 'We are located at Carrer d\'Antoni Bori, 08918 Badalona, Barcelona. Come visit us!',
                 's3_h': '03. How we work?', 's3_p': 'We do custom installations: from full projects to specific areas like IP cameras, WiFi networks or computers.',
                 's4_h': '04. Contact', 's4_p': '📞 Phone: +34 667 33 33 33\n📧 Email: optimanet-solutions@gmail.com'
+                'cookie_text': 'We use our own cookies to improve your experience. By continuing to browse, you accept our privacy policy.',
+                'cookie_accept': 'Accept',
+                'cookie_deny': 'Reject',
             }
         };
 
@@ -246,5 +252,123 @@
 
         updateLanguage();
     </script>
+    <div id="cookie-banner" class="cookie-container glass">
+    <div class="cookie-content">
+        <p data-key="cookie_text">
+            Utilitzem cookies pròpies per millorar la teva experiència. Al continuar navegant, acceptes la nostra 
+            <a href="#">política de privacitat</a>.
+        </p>
+        <div class="cookie-buttons">
+            <button id="accept-cookies" class="btn-cookie accept" data-key="cookie_accept">Acceptar</button>
+            <button id="deny-cookies" class="btn-cookie deny" data-key="cookie_deny">Rebutjar</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cookie-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(150%);
+        width: 90%;
+        max-width: 600px;
+        z-index: 9999;
+        padding: 20px;
+        border-radius: 20px;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border: 1px solid rgba(0, 242, 254, 0.3) !important;
+    }
+
+    .cookie-container.show {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .cookie-content p {
+        font-size: 0.85rem;
+        color: var(--white);
+        margin-bottom: 15px;
+    }
+
+    .cookie-content a {
+        color: var(--accent-neon);
+        text-decoration: underline;
+    }
+
+    .cookie-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-cookie {
+        padding: 8px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: 0.3s;
+        border: none;
+    }
+
+    .btn-cookie.accept {
+        background: var(--accent-neon);
+        color: var(--bg-dark);
+    }
+
+    .btn-cookie.deny {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-cookie:hover {
+        transform: scale(1.05);
+        box-shadow: var(--neon-shadow);
+    }
+</style>
+
+<script>
+    // Añade estas traducciones a tu objeto translations existente
+    // (Te las pongo aquí para que las copies y pegues dentro de tu script)
+    /*
+    ca: {
+        'cookie_text': 'Utilitzem cookies pròpies per millorar la teva experiència. Al continuar navegant, acceptes la nostra política de privacitat.',
+        'cookie_accept': 'Acceptar',
+        'cookie_deny': 'Rebutjar'
+    },
+    en: {
+        'cookie_text': 'We use our own cookies to improve your experience. By continuing to browse, you accept our privacy policy.',
+        'cookie_accept': 'Accept',
+        'cookie_deny': 'Reject'
+    }
+    */
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const banner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('accept-cookies');
+        const denyBtn = document.getElementById('deny-cookies');
+
+        // Comprovar si ja ha acceptat les cookies abans
+        if (!localStorage.getItem('cookies-accepted')) {
+            setTimeout(() => {
+                banner.classList.add('show');
+            }, 1000); // Aparece 1 segundo después de cargar
+        }
+
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookies-accepted', 'true');
+            banner.classList.remove('show');
+        });
+
+        denyBtn.addEventListener('click', () => {
+            banner.classList.remove('show');
+            // Aquí podrías desactivar scripts de seguimiento si tuvieras
+        });
+    });
+</script>
 </body>
 </html>
