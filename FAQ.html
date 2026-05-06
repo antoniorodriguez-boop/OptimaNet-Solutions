@@ -27,19 +27,22 @@
         .logo span { color: var(--accent-neon); }
 
         .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--white); font-size: 0.9rem; }
+        .nav-links a { text-decoration: none; color: var(--white); font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-neon); }
         
         #lang-btn { background:none; border:1px solid var(--accent-neon); color:var(--accent-neon); cursor:pointer; padding:5px 12px; border-radius:12px; font-weight:600; font-size:0.8rem; }
 
         .container { max-width: 900px; margin: 0 auto; padding: 140px 20px 60px; }
-        h1 { font-size: 3rem; text-align: center; margin-bottom: 10px; }
-        .subtitle { color: var(--accent-neon); text-align: center; text-transform: uppercase; font-weight: 600; margin-bottom: 50px; display: block; }
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 10px; color: var(--white); }
+        .subtitle { color: var(--accent-neon); text-align: center; text-transform: uppercase; font-weight: 600; margin-bottom: 50px; display: block; letter-spacing: 2px; }
 
-        .faq-item { margin-bottom: 15px; border-radius: 15px; overflow: hidden; transition: 0.3s; }
+        .faq-grid { display: flex; flex-direction: column; gap: 15px; }
+        .faq-item { border-radius: 15px; overflow: hidden; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05); }
         .faq-question { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.1rem; }
-        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: all 0.4s ease-out; color: rgba(255,255,255,0.7); }
-        .faq-item.active .faq-answer { padding: 10px 25px 25px; max-height: 200px; }
-        .faq-item.active { border-color: var(--accent-neon); box-shadow: var(--neon-shadow); }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: all 0.4s ease-out; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+        
+        .faq-item.active { border-color: var(--accent-neon); box-shadow: var(--neon-shadow); background: rgba(0, 242, 254, 0.05); }
+        .faq-item.active .faq-answer { padding: 10px 25px 25px; max-height: 300px; }
 
         .icon { width: 20px; height: 20px; position: relative; transition: 0.3s; }
         .icon::before, .icon::after { content: ''; position: absolute; background: var(--accent-neon); top: 50%; left: 50%; transform: translate(-50%, -50%); }
@@ -47,9 +50,11 @@
         .icon::after { width: 2px; height: 15px; }
         .faq-item.active .icon { transform: rotate(45deg); }
 
+        footer { padding: 40px; text-align: center; color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
-            .nav-links { display: none; }
+            .nav-links { display: none; } /* En móvil se puede añadir un menú hamburguesa si quieres */
         }
     </style>
 </head>
@@ -75,22 +80,79 @@
                     <span data-key="q1">Quant triga una instal·lació de la xarxa?</span>
                     <div class="icon"></div>
                 </div>
-                <div class="faq-answer"><p data-key="a1">Depèn de la mida de l'empresa, però se sol completar en 24-48 hores.</p></div>
+                <div class="faq-answer"><p data-key="a1">Depèn de la mida de l'empresa i la complexitat, però la majoria de projectes PIME es completen en un termini de 24 a 48 hores.</p></div>
             </div>
+
             <div class="faq-item glass">
                 <div class="faq-question">
                     <span data-key="q2">Oferiu garantia en els vostres serveis?</span>
                     <div class="icon"></div>
                 </div>
-                <div class="faq-answer"><p data-key="a2">Sí, totes les instal·lacions tenen 2 anys de garantia en materials.</p></div>
+                <div class="faq-answer"><p data-key="a2">Sí, totes les nostres instal·lacions compten amb una garantia de 2 anys en materials i un servei de suport tècnic post-venda.</p></div>
+            </div>
+
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span data-key="q3">Realitzeu manteniment a instal·lacions antigues?</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer"><p data-key="a3">I tant. Analitzem el teu cablejat actual, sanegem els racks i optimitzem la xarxa per millorar-ne el rendiment.</p></div>
+            </div>
+
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span data-key="q4">Es pot finançar el pagament del projecte?</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer"><p data-key="a4">Podem parlar de condicions de pagament personalitzades segons el volum del projecte. Contacta amb nosaltres per a més detalls.</p></div>
+            </div>
+
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span data-key="q5">Treballeu fora de l'àrea de Barcelona?</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer"><p data-key="a5">Ens enfoquem principalment a l'àrea metropolitana de Barcelona i Badalona, però podem desplaçar-nos segons el projecte.</p></div>
             </div>
         </div>
     </div>
 
+    <footer>&copy; 2026 OPTIMANET SOLUTIONS</footer>
+
     <script>
         const translations = {
-            'ca': { 'nav_inicio': 'Inici', 'nav_plans': 'Plans', 'sub': 'Resolem els teus dubtes', 'title': 'Preguntes Freqüents', 'q1': 'Quant triga una instal·lació?', 'a1': 'S\'acostuma a fer en 24-48h.', 'q2': 'Teniu garantia?', 'a2': 'Sí, 2 anys en materials.' },
-            'en': { 'nav_inicio': 'Home', 'nav_plans': 'Plans', 'sub': 'We solve your doubts', 'title': 'Frequently Asked Questions', 'q1': 'How long does it take?', 'a1': 'Usually between 24-48 hours.', 'q2': 'Do you have a warranty?', 'a2': 'Yes, 2 years on materials.' }
+            'ca': {
+                'nav_inicio': 'Inici',
+                'nav_plans': 'Plans',
+                'sub': 'Resolem els teus dubtes',
+                'title': 'Preguntes Freqüents',
+                'q1': 'Quant triga una instal·lació de la xarxa?',
+                'a1': 'Depèn de la mida de l\'empresa i la complexitat, però la majoria de projectes PIME es completen en un termini de 24 a 48 hores.',
+                'q2': 'Oferiu garantia en els vostres serveis?',
+                'a2': 'Sí, totes les nostres instal·lacions compten amb una garantia de 2 anys en materials i un servei de suport tècnic post-venda.',
+                'q3': 'Realitzeu manteniment a instal·lacions antigues?',
+                'a3': 'I tant. Analitzem el teu cablejat actual, sanegem els racks i optimitzem la xarxa per millorar-ne el rendiment.',
+                'q4': 'Es pot finançar el pagament del projecte?',
+                'a4': 'Podem parlar de condicions de pagament personalitzades segons el volum del projecte. Contacta amb nosaltres per a més detalls.',
+                'q5': 'Treballeu fora de l\'àrea de Barcelona?',
+                'a5': 'Ens enfoquem principalment a l\'àrea metropolitana de Barcelona i Badalona, però podem desplaçar-nos segons el projecte.'
+            },
+            'en': {
+                'nav_inicio': 'Home',
+                'nav_plans': 'Plans',
+                'sub': 'We solve your doubts',
+                'title': 'Frequently Asked Questions',
+                'q1': 'How long does a network installation take?',
+                'a1': 'It depends on the company size and complexity, but most SMB projects are completed within 24 to 48 hours.',
+                'q2': 'Do you offer a warranty on your services?',
+                'a2': 'Yes, all our installations have a 2-year warranty on materials and a post-sale technical support service.',
+                'q3': 'Do you perform maintenance on old installations?',
+                'a3': 'Of course. We analyze your current cabling, clean up the racks, and optimize the network to improve performance.',
+                'q4': 'Can the project payment be financed?',
+                'a4': 'We can discuss personalized payment conditions depending on the project volume. Contact us for more details.',
+                'q5': 'Do you work outside the Barcelona area?',
+                'a5': 'We focus mainly on the Barcelona and Badalona metropolitan area, but we can travel depending on the project.'
+            }
         };
 
         let currentLang = localStorage.getItem('lang') || 'ca';
@@ -110,8 +172,14 @@
             update();
         });
 
+        // Lógica del acordeón (Abrir/Cerrar preguntas)
         document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => { item.parentElement.classList.toggle('active'); });
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                // Opcional: Cerrar las otras antes de abrir la nueva
+                // document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                parent.classList.toggle('active');
+            });
         });
 
         update();
