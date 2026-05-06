@@ -6,16 +6,51 @@
     <title>Preguntes Freqüents | OPTIMANET SOLUTIONS</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-dark: #060a13; --bg-card: rgba(16, 24, 45, 0.7); --accent-neon: #00f2fe; --white: #ffffff; --glass-border: 1px solid rgba(255, 255, 255, 0.1); }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-dark); color: #fff; }
+        :root {
+            --bg-dark: #060a13;
+            --bg-card: rgba(16, 24, 45, 0.7);
+            --accent-neon: #00f2fe;
+            --text-main: #e2e8f0;
+            --white: #ffffff;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --neon-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+
         .glass { background: var(--bg-card); backdrop-filter: blur(12px); border: var(--glass-border); }
+
         header { position: fixed; top: 20px; width: 100%; z-index: 1000; padding: 0 5%; }
         .navbar { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 35px; border-radius: 50px; }
-        .nav-links { display: flex; list-style: none; gap: 20px; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--accent-neon); }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--white); font-size: 0.9rem; }
+        
+        #lang-btn { background:none; border:1px solid var(--accent-neon); color:var(--accent-neon); cursor:pointer; padding:5px 12px; border-radius:12px; font-weight:600; font-size:0.8rem; }
+
         .container { max-width: 900px; margin: 0 auto; padding: 140px 20px 60px; }
-        .faq-item { margin-bottom: 15px; border-radius: 15px; padding: 20px; cursor: pointer; }
-        #lang-btn { background:none; border:1px solid var(--accent-neon); color:var(--accent-neon); cursor:pointer; padding:5px 12px; border-radius:12px; }
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 10px; }
+        .subtitle { color: var(--accent-neon); text-align: center; text-transform: uppercase; font-weight: 600; margin-bottom: 50px; display: block; }
+
+        .faq-item { margin-bottom: 15px; border-radius: 15px; overflow: hidden; transition: 0.3s; }
+        .faq-question { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.1rem; }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: all 0.4s ease-out; color: rgba(255,255,255,0.7); }
+        .faq-item.active .faq-answer { padding: 10px 25px 25px; max-height: 200px; }
+        .faq-item.active { border-color: var(--accent-neon); box-shadow: var(--neon-shadow); }
+
+        .icon { width: 20px; height: 20px; position: relative; transition: 0.3s; }
+        .icon::before, .icon::after { content: ''; position: absolute; background: var(--accent-neon); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .icon::before { width: 15px; height: 2px; }
+        .icon::after { width: 2px; height: 15px; }
+        .faq-item.active .icon { transform: rotate(45deg); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -24,26 +59,43 @@
             <a href="index.html" class="logo">OPTIMANET <span>SOLUTIONS</span></a>
             <ul class="nav-links">
                 <li><a href="index.html" data-key="nav_inicio">Inici</a></li>
+                <li><a href="productes.html" data-key="nav_plans">Plans</a></li>
                 <li><button id="lang-btn">CA / EN</button></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
+        <span class="subtitle" data-key="sub">Resolem els teus dubtes</span>
         <h1 data-key="title">Preguntes Freqüents</h1>
-        <div class="faq-item glass">
-            <strong data-key="q1">Quant triga una instal·lació?</strong>
-            <p data-key="a1">Depèn de la mida, però sol ser entre 24-48 hores.</p>
+
+        <div class="faq-grid">
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span data-key="q1">Quant triga una instal·lació de la xarxa?</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer"><p data-key="a1">Depèn de la mida de l'empresa, però se sol completar en 24-48 hores.</p></div>
+            </div>
+            <div class="faq-item glass">
+                <div class="faq-question">
+                    <span data-key="q2">Oferiu garantia en els vostres serveis?</span>
+                    <div class="icon"></div>
+                </div>
+                <div class="faq-answer"><p data-key="a2">Sí, totes les instal·lacions tenen 2 anys de garantia en materials.</p></div>
+            </div>
         </div>
     </div>
 
     <script>
         const translations = {
-            'ca': { 'nav_inicio': 'Inici', 'title': 'Preguntes Freqüents', 'q1': 'Quant triga una instal·lació?', 'a1': 'Depèn de la mida, però sol ser entre 24-48 hores.' },
-            'en': { 'nav_inicio': 'Home', 'title': 'Frequently Asked Questions', 'q1': 'How long does an installation take?', 'a1': 'It depends on the size, but usually between 24-48 hours.' }
+            'ca': { 'nav_inicio': 'Inici', 'nav_plans': 'Plans', 'sub': 'Resolem els teus dubtes', 'title': 'Preguntes Freqüents', 'q1': 'Quant triga una instal·lació?', 'a1': 'S\'acostuma a fer en 24-48h.', 'q2': 'Teniu garantia?', 'a2': 'Sí, 2 anys en materials.' },
+            'en': { 'nav_inicio': 'Home', 'nav_plans': 'Plans', 'sub': 'We solve your doubts', 'title': 'Frequently Asked Questions', 'q1': 'How long does it take?', 'a1': 'Usually between 24-48 hours.', 'q2': 'Do you have a warranty?', 'a2': 'Yes, 2 years on materials.' }
         };
+
         let currentLang = localStorage.getItem('lang') || 'ca';
         const langBtn = document.getElementById('lang-btn');
+
         function update() {
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
@@ -51,11 +103,17 @@
             });
             langBtn.textContent = currentLang === 'ca' ? 'CA / EN' : 'EN / CA';
         }
+
         langBtn.addEventListener('click', () => {
             currentLang = currentLang === 'ca' ? 'en' : 'ca';
             localStorage.setItem('lang', currentLang);
             update();
         });
+
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => { item.parentElement.classList.toggle('active'); });
+        });
+
         update();
     </script>
 </body>
