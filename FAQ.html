@@ -54,7 +54,7 @@
 
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
-            .nav-links { display: none; } /* En móvil se puede añadir un menú hamburguesa si quieres */
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -64,6 +64,7 @@
             <a href="index.html" class="logo">OPTIMANET <span>SOLUTIONS</span></a>
             <ul class="nav-links">
                 <li><a href="index.html" data-key="nav_inicio">Inici</a></li>
+                <li><a href="index.html#servicios" data-key="nav_mes">Més</a></li>
                 <li><a href="productes.html" data-key="nav_plans">Plans</a></li>
                 <li><button id="lang-btn">CA / EN</button></li>
             </ul>
@@ -123,6 +124,7 @@
         const translations = {
             'ca': {
                 'nav_inicio': 'Inici',
+                'nav_mes': 'Més',
                 'nav_plans': 'Plans',
                 'sub': 'Resolem els teus dubtes',
                 'title': 'Preguntes Freqüents',
@@ -139,6 +141,7 @@
             },
             'en': {
                 'nav_inicio': 'Home',
+                'nav_mes': 'More',
                 'nav_plans': 'Plans',
                 'sub': 'We solve your doubts',
                 'title': 'Frequently Asked Questions',
@@ -169,20 +172,20 @@
         langBtn.addEventListener('click', () => {
             currentLang = currentLang === 'ca' ? 'en' : 'ca';
             localStorage.setItem('lang', currentLang);
-            update();
+            updateLanguage(); // Usamos la misma lógica
         });
 
-        // Lógica del acordeón (Abrir/Cerrar preguntas)
+        function updateLanguage() {
+            update();
+        }
+
         document.querySelectorAll('.faq-question').forEach(item => {
             item.addEventListener('click', () => {
-                const parent = item.parentElement;
-                // Opcional: Cerrar las otras antes de abrir la nueva
-                // document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                parent.classList.toggle('active');
+                item.parentElement.classList.toggle('active');
             });
         });
 
-        update();
+        updateLanguage();
     </script>
 </body>
 </html>
