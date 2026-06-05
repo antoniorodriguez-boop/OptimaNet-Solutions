@@ -253,11 +253,20 @@
         const langBtn = document.getElementById('lang-btn');
 
         function update() {
+            // Traducir textos estáticos
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if(translations[currentLang][key]) el.textContent = translations[currentLang][key];
             });
+            
             langBtn.textContent = currentLang === 'ca' ? 'CA / EN' : 'EN / CA';
+
+            // PASAR EL IDIOMA A LA URL: Modifica los enlaces de los botones dinámicamente
+            document.querySelectorAll('.btn-plan').forEach(btn => {
+                const url = new URL(btn.getAttribute('href'), window.location.origin);
+                url.searchParams.set('lang', currentLang);
+                btn.setAttribute('href', url.pathname + url.search);
+            });
         }
 
         langBtn.addEventListener('click', () => {
