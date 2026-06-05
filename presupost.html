@@ -123,7 +123,7 @@
             </div>
             <div class="input-field">
                 <label data-key="label_email">Correu de contacte</label>
-                <input type="email" name="email" required placeholder="correu@empresa.com">
+                <input type="email" name="email" required placeholder="antonio.rodriguez@inslapineda.cat">
             </div>
             <div class="input-field">
                 <label data-key="label_desc">Explica'ns què necessites</label>
@@ -132,6 +132,7 @@
             
             <button type="submit" class="btn-send" data-key="btn_send">Enviar Sol·licitud</button>
         </form>
+        <input type="hidden" name="_next" value="https://tuweb.com/index.html">
     </div>
 
     <script>
@@ -184,16 +185,30 @@
         const baseFix = { 'full': 600, 'wifi': 250, 'cameras': 300, 'cable': 200 };
 
         function calcular() {
-            const plan = document.getElementById('select-plan').value;
+            // Capturar el plan seleccionado y su texto visible
+            const selectPlanElement = document.getElementById('select-plan');
+            const plan = selectPlanElement.value;
+            const planTexto = selectPlanElement.options[selectPlanElement.selectedIndex].text;
+
+            // Capturar metros cuadrados y plantas
             const m2 = parseFloat(document.getElementById('input-m2').value) || 0;
             const plantas = parseInt(document.getElementById('input-plantas').value) || 1;
-            const diff = parseFloat(document.getElementById('select-diff').value);
+            
+            // Capturar dificultad / tipo de edificio y su texto visible
+            const selectDiffElement = document.getElementById('select-diff');
+            const diff = parseFloat(selectDiffElement.value);
+            const diffTexto = selectDiffElement.options[selectDiffElement.selectedIndex].text;
 
+            // Tu fórmula matemática original
             let total = (baseFix[plan] + (m2 * planPrice[plan])) * (1 + (plantas - 1) * 0.35) * diff;
+            const totalFormateado = Math.round(total) + "€";
 
-            document.getElementById('total-display').textContent = Math.round(total) + "€";
-            document.getElementById('hidden-total').value = Math.round(total) + "€";
-            document.getElementById('hidden-summary').value = `Servei: ${plan}, m2: ${m2}, Plantes: ${plantas}`;
+            // 1. Mostrar el total en la pantalla del usuario
+            document.getElementById('total-display').textContent = totalFormateado;
+            
+            // 2. PREPARAR EL CORREO: Guardar los datos reales en los inputs ocultos del formulario
+            document.getElementById('hidden-total').value = totalFormateado;
+            document.getElementById('hidden-summary').value = `Servei: ${planTexto} | M2: ${m2}m² | Plantes: ${plantas} | Edifici: ${diffTexto}`;
         }
 
         document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
