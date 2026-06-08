@@ -112,7 +112,7 @@
             </div>
         </div>
 
-        <form action="https://formsubmit.co/antonio.rodriguez@inslapineda.cat" method="POST" class="glass">
+        <form action="https://formspree.io/f/antonio.rodriguez@inslapineda.cat" method="POST" class="glass">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="Preu_Calculat" id="hidden-total">
             <input type="hidden" name="Detalls_Calculadora" id="hidden-summary">
@@ -151,11 +151,11 @@
                 'diff_easy': 'Oficina / Local',
                 'diff_hard': 'Nau Industrial / Nau',
                 'total_label': 'Estimació Aproximada',
-                'price_note': '*Preu final subjecte a revisió tècnica.', // TRADUCCIÓN AÑADIDA
+                'price_note': '*Preu final subjecte a revisió tècnica.', 
                 'label_name': 'Nom o Empresa',
                 'label_email': 'Correu de contacte',
                 'label_desc': "Explica'ns què necessites",
-                'desc_placeholder': "Explica breument el teu projecte o necessitats específiques...", // TRADUCCIÓN AÑADIDA
+                'desc_placeholder': "Explica breument el teu projecte o necessitats específiques...", 
                 'btn_send': 'Enviar Sol·licitud'
             },
             'en': {
@@ -172,11 +172,11 @@
                 'diff_easy': 'Office / Space',
                 'diff_hard': 'Industrial / Complex Installation',
                 'total_label': 'Approximate Estimate',
-                'price_note': '*Final price subject to technical review.', // TRADUCCIÓN AÑADIDA
+                'price_note': '*Final price subject to technical review.', 
                 'label_name': 'Name or Company',
                 'label_email': 'Contact Email',
                 'label_desc': 'Tell us what you need',
-                'desc_placeholder': "Briefly explain your project or specific needs...", // TRADUCCIÓN AÑADIDA
+                'desc_placeholder': "Briefly explain your project or specific needs...", 
                 'btn_send': 'Send Request'
             }
         };
@@ -185,28 +185,27 @@
         const baseFix = { 'full': 600, 'wifi': 250, 'cameras': 300, 'cable': 200 };
 
         function calcular() {
-            // Capturar el plan seleccionado y su texto visible
+   
             const selectPlanElement = document.getElementById('select-plan');
             const plan = selectPlanElement.value;
             const planTexto = selectPlanElement.options[selectPlanElement.selectedIndex].text;
 
-            // Capturar metros cuadrados y plantas
             const m2 = parseFloat(document.getElementById('input-m2').value) || 0;
             const plantas = parseInt(document.getElementById('input-plantas').value) || 1;
             
-            // Capturar dificultad / tipo de edificio y su texto visible
+         
             const selectDiffElement = document.getElementById('select-diff');
             const diff = parseFloat(selectDiffElement.value);
             const diffTexto = selectDiffElement.options[selectDiffElement.selectedIndex].text;
 
-            // Tu fórmula matemática original
+          
             let total = (baseFix[plan] + (m2 * planPrice[plan])) * (1 + (plantas - 1) * 0.35) * diff;
             const totalFormateado = Math.round(total) + "€";
 
-            // 1. Mostrar el total en la pantalla del usuario
+        
             document.getElementById('total-display').textContent = totalFormateado;
             
-            // 2. PREPARAR EL CORREO: Guardar los datos reales en los inputs ocultos del formulario
+ 
             document.getElementById('hidden-total').value = totalFormateado;
             document.getElementById('hidden-summary').value = `Servei: ${planTexto} | M2: ${m2}m² | Plantes: ${plantas} | Edifici: ${diffTexto}`;
         }
